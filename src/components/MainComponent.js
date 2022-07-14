@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import Menu from './MenuComponent';
 import DishDetail from './DishdetailComponent';
 import { DISHES } from '../shared/dishes';
 import Header from './HeaderComponent';
 import Footer from './FooterComponent'
 import Home from './HomeComponent';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Route, Redirect, Switch } from 'react-router-dom';
 import Contact from './ContactComponent';
 import { COMMENTS } from '../shared/comments';
 import { PROMOTIONS } from '../shared/promotions';
@@ -47,13 +47,13 @@ class Main extends Component {
     return (
       <div>
         <Header />
-        <Routes>
+        <Switch>
               <Route path='/home' component={HomePage} />
               <Route exact path='/menu' component={() => <Menu dishes={this.state.dishes} />} />        
               <Route path='/menu/:dishId' component={DishWithId} />
               <Route exact path='/contactus' component={Contact} />
-              <Navigate to="/home" />
-        </Routes>     
+              <Redirect to="/home" />
+        </Switch>     
         <Footer />
       </div>
     );
